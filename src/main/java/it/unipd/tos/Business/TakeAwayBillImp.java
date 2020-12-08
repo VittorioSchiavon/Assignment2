@@ -23,21 +23,29 @@ public class TakeAwayBillImp implements TakeAwayBill {
 
     double tot=0;
     double prezzoMinimo=0;
+    double gelatiEBudini=0;
 
     for (int i = 0; i < itemsOrdered.size(); i++) {
 
       tot+=itemsOrdered.get(i).getPrice();
 
       if(itemsOrdered.get(i).getItemType()==ItemType.Gelati) {
-        if( prezzoMinimo==0 ||
-        itemsOrdered.get(i).getPrice()<prezzoMinimo){
+        gelatiEBudini+=itemsOrdered.get(i).getPrice();
+        if( prezzoMinimo==0 || itemsOrdered.get(i).getPrice()<prezzoMinimo){
           prezzoMinimo=itemsOrdered.get(i).getPrice();
+
         }
+      }else if(  itemsOrdered.get(i).getItemType()==ItemType.Budini){
+        gelatiEBudini+=itemsOrdered.get(i).getPrice();
       }
     }
 
     if(numeroGelati>5) {
       tot=tot-(prezzoMinimo/2);
+    }
+
+    if(gelatiEBudini>50){
+      tot=tot-(tot*0.1);
     }
 
     return tot;
