@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/home/ubuntu/Desktop/Assignment2/icecream-shop-manager/src/main/java/it/unipd/tos/Business/TakeAwayBill.java">
+</file>
+<file name="/home/ubuntu/Desktop/Assignment2/icecream-shop-manager/src/main/java/it/unipd/tos/Business/Exception/RestaurantBillException.java">
+</file>
+<file name="/home/ubuntu/Desktop/Assignment2/icecream-shop-manager/src/main/java/it/unipd/tos/Business/TakeAwayBillImp.java">
+</file>
+<file name="/home/ubuntu/Desktop/Assignment2/icecream-shop-manager/src/main/java/it/unipd/tos/Model/ItemType.java">
+</file>
+<file name="/home/ubuntu/Desktop/Assignment2/icecream-shop-manager/src/main/java/it/unipd/tos/Model/MenuItem.java">
+</file>
+<file name="/home/ubuntu/Desktop/Assignment2/icecream-shop-manager/src/main/java/it/unipd/tos/Model/User.java">
+</file>
+</checkstyle>
