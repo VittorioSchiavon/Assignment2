@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+icecream-shop-manager,it.unipd.tos.business.exception,RestaurantBillException,0,4,0,0,0,2,0,1,0,1
+icecream-shop-manager,it.unipd.tos.business,TakeAwayBillImp,0,23,0,2,0,5,0,3,0,2
+icecream-shop-manager,it.unipd.tos.model,User,0,27,0,0,0,10,0,5,0,5
+icecream-shop-manager,it.unipd.tos.model,MenuItem,0,22,0,0,0,8,0,4,0,4
+icecream-shop-manager,it.unipd.tos.model,ItemType,0,34,0,0,0,1,0,1,0,1
