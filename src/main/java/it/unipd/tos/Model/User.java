@@ -4,6 +4,7 @@
 
 package it.unipd.tos.model;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class User {
     private String ID;
@@ -27,5 +28,9 @@ public class User {
     }
     public LocalDate getBirthday() {
         return birthday;
+    }
+    public int getAge() {
+      Period age = Period.between(birthday,LocalDate.now());
+      return age.getYears();
     }
 }

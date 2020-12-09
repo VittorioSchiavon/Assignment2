@@ -36,4 +36,9 @@ public class UserTest {
     public void dateTest() {
         assertEquals(LocalDate.of(1970, 6, 11),test.getBirthday());
     }
+
+    @Test
+    public void getAgeTest() {
+        assertEquals(50,test.getAge(),0);
+    }
 }
