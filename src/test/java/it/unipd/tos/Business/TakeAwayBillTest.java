@@ -143,4 +143,39 @@ public class TakeAwayBillTest {
     test.getOrderPrice(list,new User("12345","Vittorio","Schiavon",LocalDate.of(1999,12,21)));
   }
 
+
+  @Test
+  public void testCommissione() {
+    List<MenuItem> ordine = new ArrayList<MenuItem>();
+    ordine.add(new MenuItem(ItemType.Gelati,"Vaniglia",1));
+    ordine.add(new MenuItem(ItemType.Gelati,"Cola",2));
+    ordine.add(new MenuItem(ItemType.Budini,"CoppaBudino",5));
+
+    try {
+      assertEquals(8.5, test.getOrderPrice(ordine, new User("12345","Vittorio","Schiavon",LocalDate.of(1999,12,21))),0);
+    } catch (RestaurantBillException exce) {
+      // TODO Auto-generated catch block
+      fail("Errore");
+
+    }
+
+  }
+
+  @Test
+  public void testNoCommissione() {
+    List<MenuItem> ordine = new ArrayList<MenuItem>();
+    ordine.add(new MenuItem(ItemType.Gelati,"Vaniglia",1));
+    ordine.add(new MenuItem(ItemType.Gelati,"Cola",2));
+    ordine.add(new MenuItem(ItemType.Budini,"CoppaBudino",5));
+    ordine.add(new MenuItem(ItemType.Budini,"CoppaBudino",5));
+
+    try {
+      assertEquals(13, test.getOrderPrice(ordine, new User("12345","Vittorio","Schiavon",LocalDate.of(1999,12,21))),0);
+    } catch (RestaurantBillException exce) {
+      // TODO Auto-generated catch block
+      fail("Errore");
+
+    }
+
+  }
 }
