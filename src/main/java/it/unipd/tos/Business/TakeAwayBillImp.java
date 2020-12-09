@@ -14,13 +14,12 @@ public class TakeAwayBillImp implements TakeAwayBill {
   public double getOrderPrice(List<MenuItem> itemsOrdered, User user)
   throws RestaurantBillException {
 
-    int numeroGelati=0;
-    for(int i = 0; i < itemsOrdered.size(); i++) {
-      if(itemsOrdered.get(i).getItemType()==ItemType.Gelati) {
-        numeroGelati++;
-      }
+    if(itemsOrdered.size()>30) {
+      throw new RestaurantBillException
+      ("Numero massimo elementi superato");
     }
 
+    int numeroGelati=0;
     double tot=0;
     double prezzoMinimo=0;
     double gelatiEBudini=0;
@@ -31,6 +30,7 @@ public class TakeAwayBillImp implements TakeAwayBill {
 
       if(itemsOrdered.get(i).getItemType()==ItemType.Gelati) {
         gelatiEBudini+=itemsOrdered.get(i).getPrice();
+        numeroGelati++;
         if( prezzoMinimo==0 || itemsOrdered.get(i).getPrice()<prezzoMinimo){
           prezzoMinimo=itemsOrdered.get(i).getPrice();
 

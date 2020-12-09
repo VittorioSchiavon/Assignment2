@@ -116,8 +116,6 @@ public class TakeAwayBillTest {
       fail("errore");
 
     }
-
-
   }
 
   @Test
@@ -134,8 +132,15 @@ public class TakeAwayBillTest {
       fail("errore");
 
     }
+  }
 
-
+  @Test(expected = RestaurantBillException.class)
+  public void testPiuDi30elementi() throws RestaurantBillException{
+    List<MenuItem> list = new ArrayList<MenuItem>();
+    for(int i = 0; i < 35; i++) {
+      list.add(new MenuItem(ItemType.Budini, "Vaniglia", 5));
+    }
+    test.getOrderPrice(list,new User("12345","Vittorio","Schiavon",LocalDate.of(1999,12,21)));
   }
 
 }
