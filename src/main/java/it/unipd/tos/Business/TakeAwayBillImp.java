@@ -5,12 +5,17 @@
 package it.unipd.tos.business;
 
 import java.util.List;
+import java.time.LocalTime;
+import java.util.Random;
 import it.unipd.tos.business.exception.RestaurantBillException;
 import it.unipd.tos.model.ItemType;
 import it.unipd.tos.model.MenuItem;
 import it.unipd.tos.model.User;
 
 public class TakeAwayBillImp implements TakeAwayBill {
+
+  static int numFreeOrders=10;
+  static Random seed= new Random(1000);
 
   double modificaTot(double numeroGelati,double prezzoMinimo,
   double gelatiEBudini,double tot){
@@ -29,7 +34,27 @@ public class TakeAwayBillImp implements TakeAwayBill {
     return tot;
   }
 
-  public double getOrderPrice(List<MenuItem> itemsOrdered, User user)
+  boolean freeOrder(LocalTime orderTime, User user) {
+
+    if (orderTime.isAfter(LocalTime.of(17, 59, 59)) &&
+            orderTime.isBefore(LocalTime.of(19, 00, 01))) {
+        if (user.getAge()<18) {
+            if (numFreeOrders > 0) {
+                int x = seed.nextInt() & Integer.MAX_VALUE;
+                if (x % 100 < 50) {
+                    numFreeOrders=numFreeOrders-1;
+                    return true;
+                }
+            }
+        }
+    } else {
+        numFreeOrders = 10;
+    }
+    return false;
+}
+
+  public double getOrderPrice(List<MenuItem> itemsOrdered, User user,
+  LocalTime orderTime)
   throws RestaurantBillException {
 
     if(itemsOrdered.size()>30) {
@@ -57,6 +82,10 @@ public class TakeAwayBillImp implements TakeAwayBill {
         gelatiEBudini+=itemsOrdered.get(i).getPrice();
       }
     }
+
+            if (freeOrder(orderTime, user)) {
+                return 0;
+            }
 
     return modificaTot(numeroGelati ,prezzoMinimo,gelatiEBudini,tot);
   }
