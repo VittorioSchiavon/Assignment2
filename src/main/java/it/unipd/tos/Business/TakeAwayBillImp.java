@@ -11,6 +11,24 @@ import it.unipd.tos.model.MenuItem;
 import it.unipd.tos.model.User;
 
 public class TakeAwayBillImp implements TakeAwayBill {
+
+  double modificaTot(double numeroGelati,double prezzoMinimo,
+  double gelatiEBudini,double tot){
+
+    if(numeroGelati>5) {
+      tot=tot-(prezzoMinimo/2);
+    }
+
+    if(gelatiEBudini>50){
+      tot=tot-(tot*0.1);
+    }
+
+    if(tot<10 && tot>0){
+      tot+=0.5;
+    }
+    return tot;
+  }
+
   public double getOrderPrice(List<MenuItem> itemsOrdered, User user)
   throws RestaurantBillException {
 
@@ -40,14 +58,6 @@ public class TakeAwayBillImp implements TakeAwayBill {
       }
     }
 
-    if(numeroGelati>5) {
-      tot=tot-(prezzoMinimo/2);
-    }
-
-    if(gelatiEBudini>50){
-      tot=tot-(tot*0.1);
-    }
-
-    return tot;
+    return modificaTot(numeroGelati ,prezzoMinimo,gelatiEBudini,tot);
   }
 }
